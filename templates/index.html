@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="prediction-section">
+    <h1>⚽ Prédiction de Match LaLiga</h1>
+    
+    <div class="prediction-form">
+        <div class="form-group">
+            <label for="home-team">Équipe à domicile</label>
+            <input 
+                type="text" 
+                id="home-team" 
+                placeholder="Ex: Real Madrid"
+                list="teams-list"
+            >
+            <datalist id="teams-list"></datalist>
+        </div>
+        
+        <div class="vs-separator">VS</div>
+        
+        <div class="form-group">
+            <label for="away-team">Équipe à l'extérieur</label>
+            <input 
+                type="text" 
+                id="away-team" 
+                placeholder="Ex: Barcelona"
+                list="teams-list"
+            >
+        </div>
+        
+        <button class="btn btn-primary" onclick="predictMatch()">
+            <i class="fas fa-magic"></i> Prédire
+        </button>
+    </div>
+    
+    <!-- Résultats -->
+    <div id="results" class="results-section" style="display:none;">
+        <h2>📊 Résultats</h2>
+        
+        <div class="prediction-result">
+            <div class="winner-box">
+                <h3>🏆 Vainqueur probable</h3>
+                <p id="winner" class="winner-text"></p>
+                <p id="confidence" class="confidence"></p>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>📊 Probabilités</h4>
+                <div id="probabilities"></div>
+            </div>
+            
+            <div class="stat-card">
+                <h4>⚽ Score moyen</h4>
+                <div id="avg-score"></div>
+            </div>
+            
+            <div class="stat-card">
+                <h4>🎯 Top 3 scores</h4>
+                <div id="top-scores"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="additional-info">
+    <button class="btn btn-secondary" onclick="loadRanking()">
+        <i class="fas fa-trophy"></i> Charger classement
+    </button>
+    <button class="btn btn-secondary" onclick="updateDatabase()">
+        <i class="fas fa-sync"></i> Mettre à jour données
+    </button>
+</div>
+{% endblock %}
